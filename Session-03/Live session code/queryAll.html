@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="rcb">I am Kohli from Banglore</p>
+    <p class="csk" id="dhoni">I am Dhoni from Chennai</p>
+    <p class="mi">I am Sachin from Mumbai</p>
+    <p class="rcb" id="abd">I am ABD from Banglore</p>
+    <p class="csk">I am Raina from Chennai</p>
+  </body>
+</html>
+
+<script>
+    //getElementsByTagName
+  // querySelector - it is selecting only first match
+  let para = document.querySelectorAll("p");
+  console.log(para);
+
+ for(let i=0;i<para.length;i++){
+    console.log(para[i].textContent)
+ }
+</script>

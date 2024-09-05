@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="email" type="email" placeholder="Enter your email"  />
+    <input id="name" type="text" placeholder="Enter your name"  />
+
+    <button>Submit</button>
+    <p>Show email here</p>
+  </body>
+</html>
+<script>
+  //addEventListener("eventName","cb")
+
+  document.querySelector("button").addEventListener("click", submitForm);
+
+  function submitForm() {
+    let email = document.querySelector("#email").value;
+    let name = document.querySelector("#name").value;
+
+    console.log(email,name);
+    document.querySelector("p").innerText = email;
+  }
+</script>

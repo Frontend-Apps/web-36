@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="prior">
+      <option value="Low">Low</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+    </select>
+  </body>
+</html>
+
+<script>
+  document.querySelector("#prior").addEventListener("change", priority);
+
+  function priority() {
+    let res = document.querySelector("#prior").value;
+    console.log(res);
+  }
+
+  ///todo List
+
+
+  // DOM , document, js with html, events, getElementById, 
+  // getElementsByClassName, querySelector, querySelectorAll,
+  // innerText vs innerHTML, how to change innerText
+  // style elements using JS, addEventListener
+  // how to capture input values and select tag values
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="csk" id="dhoni">I am Dhoni from Chennai</p>
+    <p class="mi">I am Sachin from Mumbai</p>
+    <p class="rcb">I am Kohli from Banglore</p>
+    <h1 class="mi">I am Rohit from Mumbai</h1>
+    <p class="rcb" id="abd">I am ABD from Banglore</p>
+    <p class="csk">I am Raina from Chennai</p>
+</body>
+</html>
+
+<script>
+    //document.getElementsByClassName("ClassName")
+    let mi = document.getElementsByClassName("mi")
+    let [sachin,rohit] = mi
+    // let sachin = mi[0]
+    // let rohit = mi[1]
+    console.log(sachin,rohit)
+
+
+    let csk = document.getElementsByClassName("csk")
+    let dhoni = csk[0]
+    let raina = csk[1]
+    console.log(dhoni,raina)
+
+
+
+</script>

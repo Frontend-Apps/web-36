@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        height: 200px;
+        width: 300px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://cdn.masaischool.com/masai-website/image_61_1b80c198c6.webp"
+      alt="" />
+    <br />
+    <p onclick="likeMe()">Like</p>
+  </body>
+</html>
+<script>
+  //Events
+  let like = 0;
+  function likeMe() {
+    console.log("someone liked me");
+    like++;
+    console.log(`You liked this pic ${like} times`);
+  }
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p id="para" class="graph">I am paragraph</p>
+    </div>
+  </body>
+</html>
+
+<script>
+  //combinators - child, sibling, general sibling, descendant
+  // querySelector("*")
+  // ID
+  //   console.log(document.querySelector("#para"));
+
+  //   //Class
+  //   console.log(document.querySelector(".graph"));
+
+  //   // Tag
+  //   console.log(document.querySelector("p"));
+
+  // combinators
+  console.log(document.querySelector("div > #para"));
+</script>
