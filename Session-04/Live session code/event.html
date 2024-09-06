@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Masai</button>
+</body>
+</html>
+
+<script>
+    // whenever you are adding an event, corresponding to that event an event 
+    // object will be formed, which can be accessed inside cb
+    document.querySelector("button").addEventListener("click",dummyFn)
+
+    function dummyFn(event){
+        console.log(event)
+    }
+</script>

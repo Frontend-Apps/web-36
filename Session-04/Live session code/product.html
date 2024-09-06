@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      /* Container styling */
+      #cont {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      /* Target all direct children of #cont (the person cards) */
+      #cont > div {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px 0;
+      }
+
+      /* Target all h1 elements inside each person card */
+      #cont > div > h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+
+      /* Target all p elements inside each person card */
+      #cont > div > p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      /* Hover effect for person cards */
+      #cont > div:hover {
+        background-color: #f0f0f0;
+      }
+
+      select {
+        padding: 20px;
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <select>
+      <option value="">Select</option>
+      <option value="lth">Price: Low to High</option>
+      <option value="htl">Price: High to Low</option>
+    </select>
+    <div id="cont"></div>
+  </body>
+</html>
+
+<script>
+  const products = [
+    { id: 1, name: "Laptop", price: 1000, type: "electronics" },
+    { id: 2, name: "Phone", price: 500, type: "electronics" },
+    { id: 3, name: "Tablet", price: 700, type: "electronics" },
+    { id: 4, name: "Smartwatch", price: 250, type: "electronics" },
+    { id: 5, name: "Headphones", price: 150, type: "accessories" },
+    { id: 6, name: "Camera", price: 1200, type: "electronics" },
+    { id: 7, name: "Keyboard", price: 80, type: "accessories" },
+    { id: 8, name: "Mouse", price: 40, type: "accessories" },
+    { id: 9, name: "Monitor", price: 300, type: "electronics" },
+    { id: 10, name: "Speaker", price: 200, type: "accessories" },
+  ];
+
+  function displayProducts(products) {
+    document.querySelector("#cont").innerHTML=""
+    products.map(function (el) {
+      let card = document.createElement("div");
+      let name = document.createElement("h1");
+      let cost = document.createElement("p");
+      let type = document.createElement("p");
+
+      name.innerText = el.name;
+      cost.innerText = el.price;
+      type.innerText = el.type;
+      card.append(name, cost, type);
+      document.querySelector("#cont").append(card);
+    });
+  }
+
+  displayProducts(products);
+
+  // sorting function
+
+  document.querySelector("select").addEventListener("change", sortingProd);
+
+  function sortingProd() {
+    let selected = document.querySelector("select").value;
+    if (selected === "lth") {
+      products.sort((a, b) => a.price - b.price);
+    } else if (selected === "htl") {
+      products.sort((a, b) => b.price - a.price);
+    }
+    displayProducts(products);
+  }
+</script>

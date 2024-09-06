@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div>
+          <h1></h1>
+          <p></p>
+          <img src="" alt="" />
+          <a href=""></a>
+          <div>
+            <a href=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
 
-<script src="index.js"></script>
+<script>
+  //Steps
+  // step-1: Created h1 tag <h1> </h1>
+  let name1 = document.createElement("h1");
+  let name2 = document.createElement("h2");
+  let name3 = document.createElement("p");
+
+  // step-2: Added innerText <h1>Sartaj</h1>
+  name1.innerText = "Sartaj";
+  name2.innerText = "Ashwani";
+  name3.innerText = "Manohar";
+
+  // step-3: append to body tag
+  document.querySelector("body").append(name3, name1, name2);
+</script>

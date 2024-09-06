@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      table td,
+      table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #8caacf;
+      }
+
+      table tr:hover {
+        background-color: #ddd;
+      }
+
+      table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #0468aa;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo App</h1>
+    <form>
+      <input type="text" placeholder="Enter Todo" id="todo" value="" />
+      <select name="" id="prior">
+        <option value="">Select</option>
+        <option value="low">Low</option>
+        <option value="high">High</option>
+      </select>
+      <input type="submit" value="Add todo" />
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Task Priority</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- append  -->
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<script>
+  // whenever you are using form
+  // 1. You should not use button, instead use input type="submit"
+  // 2. add eventListener to form tag and event name should be submit
+  // 3. Whenever you are using form, page will automatically refresh, this is default behaviour of form
+  // 4. Remove or prevent this default behaviour - take help from event object
+  document.querySelector("form").addEventListener("submit", addTodo);
+  let todoList = [];
+
+  function addTodo(event) {
+    event.preventDefault();
+    let task = document.querySelector("#todo").value;
+    let priority = document.querySelector("#prior").value;
+    let taskObj = { taskName: task, priorityName: priority };
+    todoList.push(taskObj);
+    console.log(todoList);
+    displayTable(todoList);
+    document.querySelector("form").reset();
+  }
+
+  function displayTable(todoList) {
+    document.querySelector("tbody").innerHTML = "";
+    todoList.map(function (elem, index) {
+      let trow = document.createElement("tr");
+      let td1 = document.createElement("td");
+      td1.innerText = elem.taskName;
+      let td2 = document.createElement("td");
+      td2.innerText = elem.priorityName;
+      let td3 = document.createElement("td");
+      td3.innerText = "Delete";
+      td3.style.cursor = "pointer";
+      td3.addEventListener("click", function () {
+        deleteTodo(index);
+      });
+
+      trow.append(td1, td2, td3);
+      document.querySelector("tbody").append(trow);
+    });
+  }
+
+  function deleteTodo(index) {
+    //splice
+    console.log(index);
+    let updatedList = todoList.splice(index, 1);
+    console.log(updatedList);
+    displayTable(updatedList)
+  }
+
+  
+</script>
