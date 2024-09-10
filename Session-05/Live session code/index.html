@@ -6,8 +6,51 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Local storage</h1>
 </body>
 </html>
 
-<script src="index.js"></script>
+<script>
+    //setItem("keyname",value)
+    // strings
+    localStorage.setItem("student-1","Prakash")
+
+    localStorage.setItem("student-2","Manoj")
+
+    localStorage.setItem("student-3","Chandra")
+
+
+    localStorage.setItem("student-1","Prakash-New")
+
+    //getItem(key)
+    //strings
+    let s2 = localStorage.getItem("student-22")
+    console.log(s2) //
+
+    let s3 = localStorage.getItem("student-3")
+    console.log(s3) 
+
+    //Numbers
+    localStorage.setItem("mobile",98191819191)
+    localStorage.setItem("roll-no",111)
+
+
+    let mbl = localStorage.getItem("mobile")
+    console.log(mbl)
+
+    // booleans
+    localStorage.setItem("mobile",true)
+    let q = localStorage.getItem("isQualified")
+    console.log(q)
+
+
+    //delete item
+    localStorage.removeItem('ahajahajaa')
+    localStorage.removeItem('isQualified')
+
+    // strings, numbers, booleans
+
+    let out = localStorage.getItem("jdbjadsjbadjdas")
+    console.log(out)
+
+</script>

@@ -37,13 +37,17 @@
         color: white;
         text-align: center;
       }
-      div{
+      div {
         margin: auto;
       }
     </style>
   </head>
   <body>
     <div>
+      <div>
+        <a href="todo.html">Home</a>
+        <a href="bookmark.html">Bookmarks</a>
+      </div>
       <h1>Todo App</h1>
       <form>
         <input type="text" placeholder="Enter Todo" id="todo" value="" />
@@ -61,6 +65,7 @@
           <th>Task Name</th>
           <th>Task Priority</th>
           <th>Delete</th>
+          <th>Bookmark</th>
         </tr>
       </thead>
       <tbody>
@@ -71,13 +76,13 @@
 </html>
 
 <script>
-  // whenever you are using form
-  // 1. You should not use button, instead use input type="submit"
-  // 2. add eventListener to form tag and event name should be submit
-  // 3. Whenever you are using form, page will automatically refresh, this is default behaviour of form
-  // 4. Remove or prevent this default behaviour - take help from event object
   document.querySelector("form").addEventListener("submit", addTodo);
-  let todoList = [];
+  let todoList = JSON.parse(localStorage.getItem("todo-items")) || [];
+  let bookmarksList = [];
+
+  window.addEventListener("load", function () {
+    displayTable(todoList);
+  });
 
   function addTodo(event) {
     event.preventDefault();
@@ -85,7 +90,7 @@
     let priority = document.querySelector("#prior").value;
     let taskObj = { taskName: task, priorityName: priority };
     todoList.push(taskObj);
-    console.log(todoList);
+    localStorage.setItem("todo-items", JSON.stringify(todoList));
     displayTable(todoList);
     document.querySelector("form").reset();
   }
@@ -104,17 +109,28 @@
       td3.addEventListener("click", function () {
         deleteTodo(index);
       });
+      let td4 = document.createElement("td");
+      td4.innerText = "Bookmark";
+      td4.style.cursor = "pointer";
+      td4.addEventListener("click", function () {
+        bookmarkTodo(index);
+      });
 
-      trow.append(td1, td2, td3);
+      trow.append(td1, td2, td3, td4);
       document.querySelector("tbody").append(trow);
     });
   }
 
   function deleteTodo(index) {
     //splice
-    console.log(index);
-    let updatedList = todoList.splice(index, 1);
-    console.log(updatedList);
-    displayTable(updatedList);
+    todoList.splice(index, 1);
+    displayTable(todoList);
+  }
+
+  function bookmarkTodo(index) {
+    let bookmarks = todoList.splice(index, 1);
+    console.log(bookmarks);
+    bookmarksList.push(bookmarks);
+    localStorage.setItem("bookmark-items", JSON.stringify(bookmarksList));
   }
 </script>

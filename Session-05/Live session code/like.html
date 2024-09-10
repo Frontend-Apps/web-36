@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://thumbs.dreamstime.com/b/beautiful-happy-reddish-havanese-puppy-dog-sitting-frontal-looking-camera-isolated-white-background-46868560.jpg"
+      alt="" />
+    <br />
+    <h5>Like count: <span id="like"></span></h5>
+    <h5>Dislike count: <span id="dislike"></span></h5>
+
+    <button onclick="likeMe()">Like</button>
+    <button onclick="dislikeMe()">Dislike</button>
+    <button>Reset count</button>
+  </body>
+</html>
+
+<script>
+  //   let likes = localStorage.getItem("like-count");
+  //   document.querySelector("#like").innerText = likes;
+  //   let dislikes = localStorage.getItem("dislike-count");
+  //   document.querySelector("#dislike").innerText = dislikes;
+
+  //   let likes;
+  //   if (localStorage.getItem("like-count") == null) {
+  //     likes = 0;
+  //     document.querySelector("#like").innerText = likes;
+
+  //   } else {
+  //     likes = localStorage.getItem("like-count");
+  //       document.querySelector("#like").innerText = likes;
+
+  //   }
+
+  let likes = localStorage.getItem("like-count") || 0;
+  document.querySelector("#like").innerText = likes;
+
+  let dislikes = localStorage.getItem("dislike-count") || 0;
+  document.querySelector("#dislike").innerText = dislikes;
+
+  function likeMe() {
+    likes++;
+    localStorage.setItem("like-count", likes);
+    document.querySelector("#like").innerText = likes;
+  }
+
+  function dislikeMe() {
+    dislikes++;
+    localStorage.setItem("dislike-count", dislikes);
+    document.querySelector("#dislike").innerText = dislikes;
+  }
+</script>

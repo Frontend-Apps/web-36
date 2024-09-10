@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  let details = {
+    name: "Masai",
+    place: "Banglore",
+  };
+
+  localStorage.setItem("details-object", JSON.stringify(details));
+
+  let res = JSON.parse(localStorage.getItem("details-object"))
+  console.log(res);
+</script>

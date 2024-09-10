@@ -76,17 +76,19 @@
   ];
 
   function displayProducts(products) {
-    document.querySelector("#cont").innerHTML=""
+    document.querySelector("#cont").innerHTML = "";
     products.map(function (el) {
       let card = document.createElement("div");
       let name = document.createElement("h1");
       let cost = document.createElement("p");
       let type = document.createElement("p");
+      let btn = document.createElement("button");
+      btn.innerText = "Add to cart";
 
       name.innerText = el.name;
       cost.innerText = el.price;
       type.innerText = el.type;
-      card.append(name, cost, type);
+      card.append(name, cost, type,btn);
       document.querySelector("#cont").append(card);
     });
   }
