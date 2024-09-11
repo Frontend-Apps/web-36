@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="slide.css" />
+  </head>
+  <body>
+    <div>
+      <button onclick="start()">Start</button>
+      <button onclick="stop()">Stop</button>
+    </div>
+
+    <div id="container">
+      <!-- Images will be displayed here -->
+    </div>
+  </body>
+</html>
+
+<script>
+    let x;
+  var images = [
+    "https://cdn.pixabay.com/photo/2019/05/29/14/30/cinque-terre-4237666_1280.jpg",
+    "https://cdn.pixabay.com/photo/2022/01/28/21/10/honeybee-6975865_1280.jpg",
+    "https://cdn.pixabay.com/photo/2021/10/16/05/43/love-6713977_1280.jpg",
+    "https://cdn.pixabay.com/photo/2022/01/25/12/58/conifer-6966140_1280.jpg",
+  ];
+
+  window.addEventListener("load",function(){
+    let slideImg = document.createElement("img");
+    slideImg.src = images[0];
+    document.querySelector("#container").append(slideImg);
+
+  })
+
+  function start() {
+    let i = 1;
+      x = setInterval(function () {
+      let slideImg = document.createElement("img");
+      if (i == images.length) {
+        i = 0;
+      }
+      slideImg.src = images[i++];
+      //slideImg.setAttribute("src",images[0])
+      document.querySelector("#container").innerHTML = "";
+      document.querySelector("#container").append(slideImg);
+    }, 2000);
+  }
+
+  function stop() {
+    clearInterval(x)
+    
+  }
+</script>
