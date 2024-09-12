@@ -46,7 +46,7 @@ function rateFood(time) {
 function walking(time) {
   return new Promise((resolve, reject) => {
     setTimeout(function () {
-      console.log("Walk till your food digests");
+      console.log("Walking till your food digests");
     }, time);
   });
 }
