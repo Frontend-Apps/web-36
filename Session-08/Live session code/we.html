@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>
+      Implement an async function `calculateTotal` that takes an array of
+      numbers as input. <br />
+      Inside this function: - Use the `multiply` function to multiply each
+      number in the array by 3. <br />
+      - Use the `findOdd` function to filter out and return only the odd numbers
+      from the multiplied results.
+      <br />
+      Finally, use the `findSum` function to calculate and return the sum of the
+      odd numbers.
+      <br />Ensure error handling for each async operation and use async/await
+      to handle promises.
+    </h3>
+  </body>
+</html>
+<script>
+  let nums = [1, 2, 3, 4, 5];
+  // [3,6,9,12,15]
+  // [3,9,15]
+  // 27
+  // Promises and Async Await
+
+  //multiply.then(findodd).then(findSum)
+  // await multiply
+  // await findOdd
+  // await findSum
+
+  function multiply(nums) {
+    return new Promise((resolve, reject) => {
+      let multipliedNumbers = nums.map((elem) => elem * 3);
+      resolve(multipliedNumbers);
+    });
+  }
+
+  function findOdd(nums) {
+    return new Promise((resolve, reject) => {
+      let oddNums = nums.filter((elem) => elem % 2 !== 0);
+      resolve(oddNums);
+    });
+  }
+
+  function findSum(nums) {
+    return new Promise((resolve, reject) => {
+      let sum = nums.reduce((acc, el) => acc + el, 0);
+      resolve(sum);
+    });
+  }
+
+  multiply(nums)
+    .then((res) => findOdd(res))
+    .then((out) => findSum(out))
+    .then((sum) => console.log(sum))
+    .catch((err) => console.log(err));
+
+  async function calTotal(nums) {
+    try {
+      let multiplied = await multiply(nums);
+      let oddNums = await findOdd(multiplied);
+      let total = await findSum(oddNums);
+      console.log(total);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  calTotal(nums);
+</script>

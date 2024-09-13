@@ -51,14 +51,26 @@ function walking(time) {
   });
 }
 
-orderFood(1000)
-  .then(() => prepareFood(5000))
-  .then(() => deliverFood(3000))
-  .then(() => enjoyFood(1000))
-  .then(() => rateFood(2000))
-  .then(() => walking(5000))
-  .catch((err) => console.log(err));
+// orderFood(1000)
+//   .then(() => prepareFood(5000))
+//   .then(() => deliverFood(3000))
+//   .then(() => enjoyFood(1000))
+//   .then(() => rateFood(2000))
+//   .then(() => walking(5000))
+//   .catch((err) => console.log(err));
 
+// Async await
 
+async function foodProcess() {
+  try {
+    await orderFood(1000);
+    await prepareFood(5000);
+    await enjoyFood(1000);
+    await rateFood(2000);
+    await walking(5000);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-// Async await 
+foodProcess();

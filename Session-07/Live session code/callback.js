@@ -39,11 +39,11 @@ function walking(time) {
   }, time);
 }
 
-orderFood(2000, function () {
-  prepareFood(5000, function () {
-    deliverFood(3000, function () {
-      enjoyFood(1000, function () {
-        rateFood(500, function () {
+orderFood(2000, () => {
+  prepareFood(5000, () => {
+    deliverFood(3000, () => {
+      enjoyFood(1000, () => {
+        rateFood(500, () => {
           walking(10000);
         });
       });
@@ -54,4 +54,4 @@ orderFood(2000, function () {
 //callback hell - Promises
 
 //order food -> Restaurant will prepare order -> deliver order -> enjoy food
-``
+``;

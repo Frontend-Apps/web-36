@@ -1,33 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <title>Uber Simulation</title>
+  </head>
+  <body></body>
 </html>
 
 <script>
-    //"1,5,8,9"
-    let nums = [1,5,8,9]
-    let updated = JSON.stringify(nums)
-    localStorage.setItem("number-array",updated)
+  // Function to simulate booking a cab
+  function bookCab(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Cab booked!");
+        resolve();
+      }, time); // Simulate time to book the cab (e.g., 2 seconds)
+    });
+  }
 
+  // Function to simulate waiting for the cab to arrive
+  function waitForCab(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Cab has arrived!");
+        resolve();
+      }, time); // Simulate time waiting for the cab (e.g., 5 seconds)
+    });
+  }
 
-    // getItem
+  // Function to simulate the start of the trip
+  function tripStarted(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Trip started!");
+        resolve();
+      }, time); // Simulate time when the trip officially starts (e.g., 1 second)
+    });
+  }
 
-    let numbersArray = JSON.parse(localStorage.getItem("number-array"))
-    console.log(numbersArray) // "[1,5,8,9]"
+  // Function to simulate the ongoing trip
+  function tripOngoing(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Trip is ongoing...");
+        resolve();
+      }, time); // Simulate time for the ongoing trip (e.g., 8 seconds)
+    });
+  }
 
-    // localStorage - WEB API
-    //JSON.parse
+  // Function to simulate completing the trip
+  function completeTrip(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Trip completed! You've arrived at your destination.");
+        resolve();
+      }, time); // Simulate time to complete the trip (e.g., 2 seconds)
+    });
+  }
 
+  // Async function to handle the entire Uber trip process using async/await
+  async function uberProcess() {
+    console.log("Starting the Uber booking process...");
+    await bookCab(2000);         // Step 1: Book the cab (2 seconds)
+    await waitForCab(5000);      // Step 2: Wait for the cab (5 seconds)
+    await tripStarted(1000);     // Step 3: Start the trip (1 second)
+    await tripOngoing(8000);     // Step 4: Ongoing trip (8 seconds)
+    await completeTrip(2000);    // Step 5: Complete the trip (2 seconds)
+    console.log("Uber process finished.");
+  }
 
-    
-
-
-
+  // Start the Uber booking and trip process
+  uberProcess();
 </script>
