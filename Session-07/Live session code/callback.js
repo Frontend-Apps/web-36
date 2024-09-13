@@ -1,7 +1,7 @@
 function orderFood(time, cb) {
   setTimeout(function () {
     console.log("Food order placed");
-    cb(); // cb!==prepareFood() , cb == anonymous function
+    cb();
   }, time);
 }
 
@@ -54,3 +54,4 @@ orderFood(2000, function () {
 //callback hell - Promises
 
 //order food -> Restaurant will prepare order -> deliver order -> enjoy food
+``

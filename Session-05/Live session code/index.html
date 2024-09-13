@@ -1,56 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>Local storage</h1>
-</body>
+  </head>
+  <body></body>
 </html>
 
 <script>
-    //setItem("keyname",value)
-    // strings
-    localStorage.setItem("student-1","Prakash")
+  let washclothes = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Clothes Washed");
+      resolve();
+    }, 5000);
+  });
 
-    localStorage.setItem("student-2","Manoj")
+  async function greet() {
+    await washclothes; // wait until the promise resolves (*)
+    console.log("Dry clothese");
+  }
 
-    localStorage.setItem("student-3","Chandra")
-
-
-    localStorage.setItem("student-1","Prakash-New")
-
-    //getItem(key)
-    //strings
-    let s2 = localStorage.getItem("student-22")
-    console.log(s2) //
-
-    let s3 = localStorage.getItem("student-3")
-    console.log(s3) 
-
-    //Numbers
-    localStorage.setItem("mobile",98191819191)
-    localStorage.setItem("roll-no",111)
-
-
-    let mbl = localStorage.getItem("mobile")
-    console.log(mbl)
-
-    // booleans
-    localStorage.setItem("mobile",true)
-    let q = localStorage.getItem("isQualified")
-    console.log(q)
-
-
-    //delete item
-    localStorage.removeItem('ahajahajaa')
-    localStorage.removeItem('isQualified')
-
-    // strings, numbers, booleans
-
-    let out = localStorage.getItem("jdbjadsjbadjdas")
-    console.log(out)
-
+  greet();
 </script>
