@@ -66,3 +66,9 @@ function displayCard(data) {
 // display todos and jobs
 // postman
 // sorting - compare function , api
+//filtering - api, without api
+
+
+
+// pagination
+// view details

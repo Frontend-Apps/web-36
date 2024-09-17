@@ -1,0 +1,1 @@
+https://github.com/mockapi-io/docs/wiki
