@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit User</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      label {
+        margin-bottom: 10px;
+        display: block;
+        color: #666;
+      }
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #5c67f2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #4a54e1;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="editUserForm">
+      <label for="username">Name:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <input type="submit" value="Save Changes" />
+    </form>
+
+    <script>
+      // Get user data from URL params
+      const params = new URLSearchParams(window.location.search);
+      const userID = params.get("userID");
+
+      // Set values in the form fields
+
+      // Add event listener to the form
+      document
+        .querySelector("#editUserForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const updatedName = document.querySelector("#username").value;
+          const updatedEmail = document.querySelector("#email").value;
+
+          const requestOptions = {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: updatedName,
+              email: updatedEmail,
+            }),
+          };
+
+          fetch(
+            `https://web-36-bbba2-default-rtdb.firebaseio.com/users/${userID}.json`,
+            requestOptions
+          )
+            .then((response) => response.json())
+            .then((result) => {
+              alert("User details updated successfully");
+              window.location.href = "index.html"; // Redirect back to user list
+            })
+            .catch((error) => console.error("Error updating user:", error));
+        });
+    </script>
+  </body>
+</html>

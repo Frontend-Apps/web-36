@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-bottom: 10px;
+            display: block;
+            color: #666;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #5C67F2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #4a54e1;
+        }
+    </style>
+</head>
+<body>
+    <form id="createUserForm">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <input type="submit" value="Create User">
+    </form>
+
+    <script>
+        document.getElementById("createUserForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const userID = Math.floor(Math.random() * 10000) + 1; // Generate a random userID
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const requestBody = JSON.stringify({
+                email: email,
+                name: username
+            });
+
+            const requestOptions = {
+                method: "PUT",
+                headers: myHeaders,
+                body: requestBody,
+                redirect: "follow"
+            };
+
+            fetch(`https://web-36-bbba2-default-rtdb.firebaseio.com/users/${userID}.json`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    alert("User created successfully with ID: " + userID);
+                    window.location.href = "index.html"; // Redirect to home page after successful creation
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>

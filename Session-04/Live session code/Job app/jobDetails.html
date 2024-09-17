@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Details</title>
+    <link rel="stylesheet" href="job.css" />
+  </head>
+  <body>
+    <div id="job-details"></div>
+
+    <script>
+      async function fetchJobDetails() {
+        // Get job ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = urlParams.get("id");
+
+        // Fetch job details from the API
+        try {
+          const response = await fetch(
+            `https://66e6aa9517055714e58a3149.mockapi.io/jobs/${jobId}`
+          );
+          const job = await response.json();
+          displayJobDetails(job);
+        } catch (error) {
+          console.error("Error fetching job details:", error);
+        }
+      }
+
+      function displayJobDetails(job) {
+        const jobDetails = document.getElementById("job-details");
+        jobDetails.innerHTML = `
+          <div class="job-card" style="background-color: ${job.color};">
+            <h2>${job.company_name}</h2>
+            <p><strong>Job Title:</strong> ${job.job}</p>
+            <p><strong>Salary:</strong> $${job.salary}/hr</p>
+            <p><strong>Country:</strong> ${job.country}</p>
+            <p><strong>Job Type:</strong> ${
+              job.fullTime ? "Full-Time" : "Part-Time"
+            }</p>
+            <p><strong>Openings:</strong> ${job.openings}</p>
+            <p><strong>Description:</strong> ${job.job_description}</p>
+          </div>
+        `;
+      }
+
+      // Fetch and display job details on page load
+      fetchJobDetails();
+    </script>
+  </body>
+</html>

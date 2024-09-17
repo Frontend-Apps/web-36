@@ -1,0 +1,30 @@
+{
+    "users": {
+      "1001": {
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "userID": 1001
+      },
+      "1002": {
+        "name": "Jane Smith",
+        "email": "janesmith@example.com",
+        "userID": 1002
+      },
+      "1003": {
+        "name": "Bob Johnson",
+        "email": "bobjohnson@example.com",
+        "userID": 1003
+      },
+      "1004": {
+        "name": "Alice Brown",
+        "email": "alicebrown@example.com",
+        "userID": 1004
+      },
+      "1005": {
+        "name": "Charlie Davis",
+        "email": "charliedavis@example.com",
+        "userID": 1005
+      }
+    }
+  }
+  

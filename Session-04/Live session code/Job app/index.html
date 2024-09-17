@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings with Pagination</title>
+    <link rel="stylesheet" href="job.css" />
+  </head>
+  <body>
+    <div>
+      <label for="sort-salary">Sort by Salary:</label>
+      <select id="sort-salary" onchange="fetchJobs()">
+        <option value="default">Default</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+
+      <label for="filter-fulltime">Filter by Job Type:</label>
+      <select id="filter-fulltime" onchange="fetchJobs()">
+        <option value="all">All</option>
+        <option value="fulltime">Full-Time</option>
+        <option value="parttime">Part-Time</option>
+      </select>
+    </div>
+
+    <div id="job-list"></div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination-controls">
+      <button id="prev-page" onclick="changePage('prev')">Previous</button>
+      <span id="page-info"></span>
+      <button id="next-page" onclick="changePage('next')">Next</button>
+    </div>
+
+    <script>
+      let currentPage = 1; // Current page number
+      const limit = 10; // Number of jobs per page
+
+      function displayJobs(data) {
+        let jobCards = ""; // Build job cards in this string
+        data.map((job) => {
+          let date = job.createdAt.split("T")[0]; // Get only the date part (yyyy-mm-dd)
+          let [year, month, day] = date.split("-"); // Split the date into year, month, and day
+          let formattedDate = `${year}-${day}-${month}`;
+
+          jobCards += `
+            <div class="job-card" style="background-color: ${job.color};">
+              <div class="date">${formattedDate}</div>
+              <div class="job-content">
+                <h2>${job.company_name}</h2>
+                <p>${job.job}</p>
+                <div class="job-tags">
+                  <span>${job.fullTime ? "Full-Time" : "Part-Time"}</span>
+                  <span>${job.country}</span>
+                  <span>Openings: ${job.openings}</span>
+                </div>
+              </div>
+              <div class="job-footer">
+                <p>$${job.salary}/hr</p>
+                <a href="jobDetails.html?id=${job.id}">Details</a>
+              </div>
+            </div>
+          `;
+        });
+        document.getElementById("job-list").innerHTML = jobCards;
+      }
+
+      function fetchJobs() {
+        const sortBy = document.getElementById("sort-salary").value;
+        const filterBy = document.getElementById("filter-fulltime").value;
+
+        // Base API URL
+        let apiUrl = `https://66e6aa9517055714e58a3149.mockapi.io/jobs?page=${currentPage}&limit=${limit}`;
+
+        // Add filtering parameter based on full-time or part-time
+        if (filterBy === "fulltime") {
+          apiUrl += `&fullTime=true`;
+        } else if (filterBy === "parttime") {
+          apiUrl += `&fullTime=false`;
+        }
+
+        // Add sorting parameter if needed
+        if (sortBy === "asc" || sortBy === "desc") {
+          apiUrl += `&sortBy=salary&order=${sortBy}`;
+        }
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((jobs) => {
+            displayJobs(jobs); // Display jobs based on sorting and filtering
+            updatePageInfo(); // Update pagination info
+          })
+          .catch((error) => console.log("error", error));
+      }
+
+      function changePage(direction) {
+        if (direction === "next") {
+          currentPage += 1;
+        } else if (direction === "prev" && currentPage > 1) {
+          currentPage -= 1;
+        }
+        fetchJobs(); // Fetch the new page data
+      }
+
+      function updatePageInfo() {
+        document.getElementById(
+          "page-info"
+        ).textContent = `Page ${currentPage}`;
+      }
+
+      // Fetch jobs on page load with default (unsorted and unfiltered) data
+      fetchJobs();
+    </script>
+  </body>
+</html>

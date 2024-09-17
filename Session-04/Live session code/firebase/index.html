@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Cards</title>
+    <style>
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+      }
+      .card {
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        margin-bottom: 20px;
+      }
+      .card h2,
+      .card p {
+        margin: 0;
+        padding-bottom: 10px;
+      }
+      .edit-btn,
+      .delete-btn {
+        background-color: #f0f0f0;
+        border: none;
+        padding: 10px;
+        width: 48%;
+        margin-right: 4%;
+        cursor: pointer;
+      }
+      .delete-btn {
+        margin-right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-container" id="userCards"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", fetchData);
+
+      function fetchData() {
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(
+          "https://web-36-bbba2-default-rtdb.firebaseio.com/users.json",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((users) => displayUsers(users))
+          .catch((error) => console.error("Error loading users:", error));
+      }
+
+      function displayUsers(users) {
+        const container = document.getElementById("userCards");
+        container.innerHTML = "";
+
+        Object.entries(users).forEach(([userID, user]) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h2>${user.name}</h2>
+            <p>${user.email}</p>
+            <button class="edit-btn" onclick="editUser('${userID}')">Edit</button>
+            <button class="delete-btn" onclick="deleteUser('${userID}')">Delete</button>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      function editUser(userID, name, email) {
+        // Redirect to edit.html with parameters (userID, name, email)
+        window.location.href = `edit.html?userID=${userID}`;
+      }
+      function deleteUser(userID) {
+        if (
+          !confirm(
+            "Are you sure you want to delete user with ID " + userID + "?"
+          )
+        )
+          return;
+
+        fetch(
+          `https://web-36-bbba2-default-rtdb.firebaseio.com/users/${userID}.json`,
+          {
+            method: "DELETE",
+            redirect: "follow",
+          }
+        )
+          .then((response) => response.json())
+          .then(() => {
+            alert(`User ${userID} has been deleted.`);
+            fetchData(); // Reload the users after deletion
+          })
+          .catch((error) => console.error("Error deleting user:", error));
+      }
+    </script>
+  </body>
+</html>
