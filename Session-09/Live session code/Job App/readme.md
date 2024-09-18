@@ -1,1 +1,1 @@
-https://github.com/mockapi-io/docs/wiki
+https://github.com/mockapi-io/docs/wiki,.

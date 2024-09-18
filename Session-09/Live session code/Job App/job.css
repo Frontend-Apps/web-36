@@ -15,6 +15,10 @@ body {
     gap:20px;
   }
 
+  #pagination{
+    margin: 40px;
+  }
+
   .job-card {
     background-color: #fff;
     border-radius: 10px;

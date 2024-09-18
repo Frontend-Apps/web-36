@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings with Custom Pagination</title>
+    <style>
+      #job-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 800px;
+        margin: 20px auto;
+      }
+
+      .job-card {
+        padding: 15px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        border-radius: 8px;
+      }
+
+      /* Style the pagination controls */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+
+      /* Style for each page item */
+      button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #f0f0f0;
+      }
+
+      /* Style for disabled buttons */
+      button:disabled {
+        cursor: not-allowed;
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="sort-salary">Sort by Salary:</label>
+      <select id="sort-salary" onchange="fetchJobs()">
+        <option value="default">Default</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+
+      <label for="filter-fulltime">Filter by Job Type:</label>
+      <select id="filter-fulltime" onchange="fetchJobs()">
+        <option value="all">All</option>
+        <option value="fulltime">Full-Time</option>
+        <option value="parttime">Part-Time</option>
+      </select>
+    </div>
+
+    <div id="job-list"></div>
+
+    <div class="pagination">
+      <button id="prev-btn" onclick="changePage('prev')">Previous</button>
+      <span id="page-info">Page 1</span>
+      <button id="next-btn" onclick="changePage('next')">Next</button>
+    </div>
+
+    <script>
+      let jobsData = []; // Store the fetched jobs
+      let currentPage = 1; // Current page number
+      let itemsPerPage = 10; // Default number of items per page
+      let totalPages = 1; // Total number of pages
+
+      function displayJobs(data) {
+        const jobList = document.getElementById("job-list");
+        jobList.innerHTML = ""; // Clear the container
+
+        // Calculate the start and end indices for the jobs to display
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        // Slice the jobsData array to get only the jobs for the current page
+        const paginatedJobs = data.slice(start, end);
+
+        // Loop through the paginated jobs and display them
+        paginatedJobs.forEach((job) => {
+          const jobElement = document.createElement("div"); // Create a new div for each job
+          jobElement.classList.add("job-card");
+          jobElement.innerHTML = `
+            <h2>${job.company_name}</h2>
+            <p>${job.job}</p>
+            <div class="job-tags">
+              <span>${job.fullTime ? "Full-Time" : "Part-Time"}</span>
+              <span>${job.country}</span>
+              <span>Openings: ${job.openings}</span>
+            </div>
+            <p>$${job.salary}/hr</p>
+            <a href="#">Details</a>
+          `;
+          jobList.appendChild(jobElement); // Add the job to the container
+        });
+      }
+
+      function updatePagination() {
+        document.getElementById("page-info").textContent = `Page ${currentPage}`;
+
+        // Disable the Previous button if on the first page
+        document.getElementById("prev-btn").disabled = currentPage === 1;
+
+        // Disable the Next button if on the last page
+        document.getElementById("next-btn").disabled = currentPage === totalPages;
+      }
+
+      function changePage(direction) {
+        if (direction === "next" && currentPage < totalPages) {
+          currentPage++;
+        } else if (direction === "prev" && currentPage > 1) {
+          currentPage--;
+        }
+        displayJobs(jobsData); // Display jobs for the new page
+        updatePagination(); // Update the pagination buttons and page info
+      }
+
+      function fetchJobs() {
+        const sortBy = document.getElementById("sort-salary").value;
+        const filterBy = document.getElementById("filter-fulltime").value;
+
+        // Base API URL
+        let apiUrl = `https://66e6aa9517055714e58a3149.mockapi.io/jobs`;
+
+        // Add filtering parameter based on full-time or part-time
+        if (filterBy === "fulltime") {
+          apiUrl += `?fullTime=true`;
+        } else if (filterBy === "parttime") {
+          apiUrl += `?fullTime=false`;
+        }
+
+        // Add sorting parameter if needed
+        if (sortBy === "asc" || sortBy === "desc") {
+          apiUrl += `&sortBy=salary&order=${sortBy}`;
+        }
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((jobs) => {
+            jobsData = jobs; // Store fetched data in the jobsData array
+            totalPages = Math.ceil(jobsData.length / itemsPerPage); // Calculate total pages
+            currentPage = 1; // Reset to the first page
+            displayJobs(jobsData); // Display jobs based on sorting and filtering
+            updatePagination(); // Ensure the pagination buttons and page info are updated
+          })
+          .catch((error) => console.log("error", error));
+      }
+
+      // Initialize the job listing with default values
+      fetchJobs();
+    </script>
+  </body>
+</html>

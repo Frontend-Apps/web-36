@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Job Details</h1>
+    <div id="job-list"></div>
+  </body>
+</html>
+
+<script>
+  console.log(window.location.search);
+  let queryString = window.location.search;
+  let urlParams = new URLSearchParams(queryString);
+  let id = urlParams.get("id");
+
+  console.log(id);
+  //console.log(urlParams);
+
+  fetch(`https://66e6aa9517055714e58a3149.mockapi.io/jobs/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayData(data));
+
+  function displayData(data) {
+    document.querySelector("#job-list").innerHTML += `
+        <div class="job-card">
+        <div class="job-content" style="background-color:${data.color}">
+          <h2> ${data.id} - ${data.company_name}</h2>
+          <p>${data.job}</p>
+          <div class="job-tags">
+            <span>${data.fullTime ? "Full-Time" : "Part-Time"}</span>
+            <span>${data.country}</span>
+            <span>Openings: ${data.openings}</span>
+          </div>
+        </div>
+        <div class="job-footer">
+          <p>$ ${data.salary}/hr</p>
+          <a>Apply</a>
+        </div>
+      </div>
+    `;
+  }
+
+  //get
+  // post
+  // patch
+  // delete
+  // firebase -> CRUD
+</script>
