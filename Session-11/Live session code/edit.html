@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css" />
+  </head>
+  <body>
+    <form id="editUserForm">
+      <label for="username">Name:</label>
+      <input type="text" id="username" name="username" required />
+
+      <input type="submit" value="Edit Details" />
+    </form>
+  </body>
+</html>
+<script>
+  document.querySelector("#editUserForm").addEventListener("submit", editUser);
+
+  let queryString = window.location.search;
+  console.log(queryString);
+  let params = new URLSearchParams(queryString);
+  let userID = params.get("userID");
+  let name = params.get("name");
+  console.log(userID);
+  document.querySelector("#username").value = name;
+
+  function editUser() {
+    event.preventDefault();
+    let username = document.querySelector("#username").value;
+
+    let rawData = JSON.stringify({
+      name: username,
+    });
+
+    let requestOptions = {
+      method: "PATCH",
+      body: rawData,
+    };
+
+    fetch(
+      `https://ft-web-36-default-rtdb.firebaseio.com/users/${userID}.json`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then((out) => {
+        alert("Successfully edited");
+        window.location.href = "index.html";
+      })
+      .catch((err) => console.log(err));
+  }
+
+
+  // Authentication 
+</script>

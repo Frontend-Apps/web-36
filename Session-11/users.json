@@ -1,0 +1,86 @@
+{
+    "users": {
+        "1001": {
+            "email": "johndoe@example.com",
+            "name": "John Doe"
+        },
+        "1002": {
+            "email": "janesmith@example.com",
+            "name": "Jane Smith"
+        },
+        "1003": {
+            "email": "bobjohnson@example.com",
+            "name": "Bob Johnson"
+        },
+        "1004": {
+            "email": "alicebrown@example.com",
+            "name": "Alice Brown"
+        },
+        "1005": {
+            "email": "charliedavis@example.com",
+            "name": "Charlie Davis"
+        },
+        "1006": {
+            "email": "emilywhite@example.com",
+            "name": "Emily White"
+        },
+        "1007": {
+            "email": "michaelclark@example.com",
+            "name": "Michael Clark"
+        },
+        "1008": {
+            "email": "sarawilson@example.com",
+            "name": "Sara Wilson"
+        },
+        "1009": {
+            "email": "jamesmiller@example.com",
+            "name": "James Miller"
+        },
+        "1010": {
+            "email": "marymartin@example.com",
+            "name": "Mary Martin"
+        },
+        "1011": {
+            "email": "davidrobinson@example.com",
+            "name": "David Robinson"
+        },
+        "1012": {
+            "email": "lauragarcia@example.com",
+            "name": "Laura Garcia"
+        },
+        "1013": {
+            "email": "thomasscott@example.com",
+            "name": "Thomas Scott"
+        },
+        "1014": {
+            "email": "nancyking@example.com",
+            "name": "Nancy King"
+        },
+        "1015": {
+            "email": "danielhall@example.com",
+            "name": "Daniel Hall"
+        },
+        "1016": {
+            "email": "ashleyadams@example.com",
+            "name": "Ashley Adams"
+        },
+        "1017": {
+            "email": "kevinlopez@example.com",
+            "name": "Kevin Lopez"
+        },
+        "1018": {
+            "email": "rachellee@example.com",
+            "name": "Rachel Lee"
+        },
+        "1019": {
+            "email": "stevenyoung@example.com",
+            "name": "Steven Young"
+        },
+        "1020": {
+            "email": "amandathomas@example.com",
+            "name": "Amanda Thomas"
+        }
+    }
+    
+  }
+  

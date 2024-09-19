@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      #userCards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      #userCards > div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 20px;
+      }
+      #userCards > div > h2 {
+        color: teal;
+      }
+
+      #delete {
+        background-color: red;
+        border: none;
+        padding: 5px;
+        border-radius: 4px 10px;
+        color: white;
+        cursor: pointer;
+      }
+      #edit {
+        background-color: green;
+        border: none;
+        padding: 5px;
+        border-radius: 4px 10px;
+        color: white;
+        cursor: pointer;
+      }
+      navbar > a {
+        margin: 20px;
+        text-decoration: none;
+      }
+
+      navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: teal;
+        color: White;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <navbar>
+      <a href="create.html">Create User</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </navbar>
+    <div id="userCards"></div>
+  </body>
 </html>
 
 <script src="index.js"></script>

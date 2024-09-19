@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css" />
+  </head>
+  <body>
+    <form id="createUserForm">
+      <label for="username">Name:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <input type="submit" value="Create User" />
+    </form>
+  </body>
+</html>
+
+<script>
+  document
+    .querySelector("#createUserForm")
+    .addEventListener("submit", createUser);
+
+  function createUser() {
+    event.preventDefault();
+    let username = document.querySelector("#username").value;
+    let email = document.querySelector("#email").value;
+    let userID = Math.ceil(Math.random() * 1000 + 1);
+    console.log(userID);
+    console.log(username, email);
+
+    let payload = JSON.stringify({
+      email: email,
+      name: username,
+    });
+
+    let requestOptions = {
+      method: "PUT",
+      body: payload,
+    };
+
+    fetch(
+      `https://ft-web-36-default-rtdb.firebaseio.com/users/${userID}.json`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        alert("User created succssfully");
+        window.location.href = "index.html";
+      })
+      .catch((err) => console.log(err));
+  }
+</script>
