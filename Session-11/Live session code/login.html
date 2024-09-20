@@ -34,3 +34,41 @@
     </div>
   </body>
 </html>
+
+<script>
+    document.querySelector("#loginForm").addEventListener("submit",login)
+
+
+function login(){
+    event.preventDefault()
+    let email = document.querySelector("#email").value
+    let password = document.querySelector("#password").value
+    let apiKey= "AIzaSyC9ysba5uWh_dXLVBNtxJzMzG6vsr4O8dM"
+
+    var raw = JSON.stringify({
+        "email": email,
+        "password": password
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    body: raw,
+    };
+
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,requestOptions)
+    .then((res)=>res.json())
+    .then((data)=>{
+        if(data.error){
+            alert(data.error.message)
+        }
+        else{
+            localStorage.setItem("authToken",data.idToken)
+            alert("login successful")
+            window.location.href="index.html"
+        }
+    })
+    .catch((err)=>{
+        alert("error during login")
+    })
+}
+</script>

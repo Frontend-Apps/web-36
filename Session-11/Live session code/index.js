@@ -1,3 +1,10 @@
+let auth = localStorage.getItem("authToken");
+
+if (auth) {
+  document.querySelector("#register").style.display = "none";
+  document.querySelector("#logout").style.display = "block";
+  document.querySelector("#login").style.display = "none";
+}
 function fetchData() {
   var requestOptions = {
     method: "GET",
@@ -13,6 +20,13 @@ function fetchData() {
 }
 
 fetchData();
+
+//logout
+
+document.querySelector("#logout").addEventListener("click", function () {
+  localStorage.removeItem("authToken");
+  window.location.reload();
+});
 
 function displayUsers(data) {
   document.querySelector("#userCards").innerHTML = "";
@@ -49,6 +63,6 @@ function deleteUser(id) {
     });
 }
 
-function editUser(id,name) {
+function editUser(id, name) {
   window.location.href = `edit.html?userID=${id}&name=${name}`;
 }

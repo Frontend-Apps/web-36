@@ -34,3 +34,32 @@
     </div>
   </body>
 </html>
+
+<script>
+    document.querySelector("#signupForm").addEventListener("submit",signUp)
+
+
+    function signUp(){
+        event.preventDefault()
+        let email = document.querySelector("#email").value
+        let password = document.querySelector("#password").value
+        let apiKey= "AIzaSyC9ysba5uWh_dXLVBNtxJzMzG6vsr4O8dM"
+
+        var raw = JSON.stringify({
+            "email": email,
+            "password": password
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        body: raw,
+        };
+
+        fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,requestOptions)
+        .then((res)=>res.json())
+        .then((data)=>{
+            alert("Signed up successfully")
+            window.location.href = "login.html"
+        })
+    }
+</script>

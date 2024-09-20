@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      #gallery > div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 20px;
+        margin: 20px;
+      }
+      #load {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Infinite scrolling</h1>
+    <div id="gallery"></div>
+    <div id="load">Loadinggg.......</div>
+  </body>
 </html>
 
 <script src="index.js"></script>
