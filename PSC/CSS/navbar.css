@@ -1,0 +1,48 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  
+#navbar {
+    background-color: #4b7aa9;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  
+  #navbar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  #navbar a:active {
+    background-color: #777;
+  }
+  
+  #navbar a:focus {
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+  }
+  
+  #navbar a:first-child {
+    margin-right: auto;
+  }
+  
+  #navbar a:not(:first-child) {
+    margin-left: 20px;
+  }
+  

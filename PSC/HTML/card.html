@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Card</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .course-card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .course-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .course-header {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+      }
+
+      .course-header h2 {
+        font-size: 24px;
+      }
+
+      .course-body {
+        padding: 20px;
+      }
+
+      .course-body p {
+        font-size: 16px;
+        margin: 10px 0;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .course-body .price {
+        font-size: 20px;
+        color: #e63946;
+        font-weight: bold;
+      }
+
+      .course-footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #ddd;
+      }
+
+      .course-footer .rating {
+        font-size: 18px;
+        color: #b4690e;
+      }
+
+      .course-footer .reviews {
+        font-size: 14px;
+        color: #7f8c8d;
+      }
+
+      .best {
+        background-color: #f7dfba;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="course-card">
+      <div class="course-header">
+        <h2>Advanced Web Development with React</h2>
+      </div>
+      <div class="course-body">
+        <p><strong>Instructor:</strong> Dr. Emma Watson</p>
+        <p><strong>Total Lectures:</strong> 380</p>
+        <p><strong>Level:</strong> Advanced</p>
+        <p class="price"><strong>Price:</strong> ₹3299</p>
+        <p><strong>Total Hours:</strong> 65.5 hours</p>
+        <p class="best">Bestseller</p>
+      </div>
+      <div class="course-footer">
+        <span class="rating">★ 4.8</span>
+        <span class="reviews">352,456 reviews</span>
+      </div>
+    </div>
+  </body>
+</html>

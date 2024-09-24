@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/home.css" />
+    <link rel="stylesheet" href="../CSS//navbar.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="filterDiv">
+      <label for="filterLevel">Choose Level:</label>
+      <select name="" id="levelFilter">
+        <option value="">Default</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <label for="sort">Sort By price</label>
+      <select name="" id="sortByPrice">
+        <option value="">Default</option>
+        <option value="L2H">Low to High</option>
+        <option value="H2L">High to Low</option>
+      </select>
+    </div>
+    <h3 id="total">Total Course available : <span></span></h3>
+    <div id="cont"></div>
+  </body>
+</html>
+<script type="module" src="../JS/home.js"></script>

@@ -1,0 +1,13 @@
+{
+    "1001": {
+      "title": "Advanced Web Development with React",
+      "instructor": "Dr. Emma Watson",
+      "rating": 4.8,
+      "reviews": 352456,
+      "price": 3299,
+      "total_hours": 65.5,
+      "lectures": 380,
+      "level": "Advanced",
+      "bestseller": true
+    }
+}
